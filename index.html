@@ -198,6 +198,50 @@
       animation: float 2s ease-in-out infinite;
     }
 
+    /* Enhanced Fireworks Button */
+    .fireworks-btn {
+      margin-top: 20px;
+      padding: 15px 30px;
+      background: linear-gradient(45deg, #ff6f61, #ff9a9e, #a8edea);
+      border: 2px solid transparent;
+      border-radius: 50px;
+      color: white;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 111, 97, 0.5);
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      animation: pulse-gradient 2s infinite, float 3s infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fireworks-btn:hover {
+      transform: scale(1.1) rotate(-2deg);
+      box-shadow: 0 8px 30px rgba(255, 111, 97, 0.8);
+      border-color: rgba(255, 235, 238, 0.5);
+    }
+
+    .fireworks-btn::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border: 2px solid transparent;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #ff6f61, #ff9a9e, #a8edea);
+      background-size: 400% 400%;
+      animation: pulse-border 2s linear infinite;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .fireworks-btn:hover::before {
+      opacity: 1;
+    }
+
     /* Fireworks Container */
     #fireworks {
       position: fixed;
@@ -205,7 +249,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 1000;
+      z-index: 2000;
       pointer-events: none;
       display: none;
     }
@@ -213,11 +257,29 @@
     /* Firework Particles */
     .particle {
       position: absolute;
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       background: #ff6f61;
       border-radius: 50%;
-      animation: explode 1s linear forwards;
+      animation: explode 1.5s linear forwards;
+      transform-origin: center;
+    }
+
+    .spark {
+      background: transparent;
+      border: 2px solid #ff9a9e;
+      border-radius: 50%;
+      animation: sparkle 1s linear infinite;
+    }
+
+    .star {
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 10px solid #ffd700;
+      transform: rotate(30deg);
+      animation: twinkle 0.8s linear infinite;
     }
 
     /* Animations */
@@ -236,19 +298,44 @@
       50% { opacity: 1; }
     }
 
+    @keyframes pulse-gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes pulse-border {
+      0% { background-position: 0% 50%; transform: scale(1); opacity: 0.5; }
+      50% { background-position: 100% 50%; transform: scale(1.2); opacity: 1; }
+      100% { background-position: 0% 50%; transform: scale(1); opacity: 0.5; }
+    }
+
     @keyframes explode {
       0% { transform: scale(1); opacity: 1; }
-      100% { transform: scale(2); opacity: 0; }
+      70% { transform: scale(3); opacity: 0.8; }
+      100% { transform: scale(5); opacity: 0; }
     }
+
+    @keyframes sparkle {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(0.5) rotate(180deg); opacity: 0.5; }
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.5; transform: rotate(0deg); }
+      50% { opacity: 1; transform: rotate(180deg); }
+      100% { opacity: 0.5; transform: rotate(360deg); }
+    }
+
   </style>
 </head>
 <body>
   <!-- Celestial Background -->
   <div class="background-decor"></div>
-
+  
   <!-- Header -->
-  <h1>Happy Birthday, Bit*ch!</h1>
-
+  <h1>Happy Birthday, Bitch!</h1>
+  
   <!-- Envelope -->
   <div class="envelope-container">
     <div class="envelope" onclick="openEnvelope()">
@@ -258,7 +345,7 @@
     </div>
     <button class="touch-button" onclick="openEnvelope()">💌 Open Your Gift 💌</button>
   </div>
-
+  
   <!-- Content -->
   <div class="container" id="content" style="display: none;">
     <div class="collage">
@@ -268,10 +355,10 @@
     </div>
     <div class="note">
       <p>
-        Happy birthday, bit*ch. I don't miss the old you, I want you to keep up the growth. Kew amar theke outperform korle jealous feel na howa ek jinish ar to pray je ekjon amare outperform korbe is a different thing. Nabila er khetre I always loved the fact je ore diye amar nijer pain numb hoi. Ore diye nijer validity measure korte vallagto. Egula unethical, but also true. I never wanted her to outperform me. Personal satisfaction.... But maybe you're the only one in this world I want to outperform me. Ekhon ar emne eshe kannakati o korishna inbox e, emne notes likhew ar fb te share dishna. You’re not the crybaby you used to be anymore. Huge improvement vai, tor mental growth er jonne hoito aunty responsible. As said by Nabila. But idk kemne oi phase theke ei phase e ashchish. Ami asholei obak hoichi tore niye. Ami to dhorei nichilam boro hoye pura who*re hobi tokhon ja ja kortish, but your turned out to be completely different. Code agei lekha chilo. Aro 2-3 ta pic ghatle pawa jabe, oidike jabona. Ekhon ei raat 2 tar somoy boshe wish likhtesi. Ar hut kore tor onek memories, deeds mathai ashlo. I don’t want to mention anything, dekh kichu mone pore kina 1st diker kahini, erpor sphinx and so on…. kisher theke ki hoye gechish vai, life e tor shob achievement tor improvement er jonnei. True, but life e mela polapan mentoring korchi and closely dekhchi. I don't recall anyone who changed this much. Hoito onek kichui onek somoy bolishnai. Onek pain nijer moddhe rekhe ei phase e ashchish. Idk what to say anymore except congratulations vai, you've grown. Porer bochor ei time e kothai thakbo idk, either kono ekta boro platform e darabo. Or another wasted potential hoye ei world er ekjon failure hoye mishe jabo. Eijonne I tried to make this a bit special. Tui na thakle ajke ei position e eshe daraite partam na. Tui amare 24/7 happy rakhishnai, tor sathe oi somporko na. But whenever I faced a breakdown, you were there to help me rise up. In fact meyera usually always oder friend der side nei, though tui nabila re mela pochondo korish, oi bro jokhon pura introvert chilo, tui or jonne hudai bash khaili. Or kono friend chilona. Amio koisilam, chaire de, oi ja pare koruk ekai. Still you cared for her, ami manush er jonne onek kichui kori/kortam but still etota karor jonne korinai. Huge respect for you, man. But still tui nabila er bishoytaw jemne tackle dili amar side hoye, I'm speechless. Idk what I would have done without you, guess we'd never know. Thanks to the lord for sending you in my life and thanks for all the supports I can never repay. Anyways, onek sad kotha batra bole fellam. Tor ekhon peak time, for the next 7-8 years tor beauty appreciate korbe, you'd be considered most valueable in this upcoming phase. Best of luck miss Fowzia Forhad Ahona. Thank you for everything.
-      </p>
+Happy birthday, bit*ch. I don't miss the old you, I want you to keep up the growth. Kew amar theke outperform korle jealous feel na howa ek jinish ar to pray je ekjon amare outperform korbe is a different thing. Nabila er khetre I always loved the fact je ore diye amar nijer pain numb hoi. Ore diye nijer validity measure korte vallagto. Egula unethical, but also true. I never wanted her to outperform me. Personal satisfaction.... But maybe you're the only one in this world I want to outperform me. Ekhon ar emne eshe kannakati o korishna inbox e, emne notes likhew ar fb te share dishna. You’re not the crybaby you used to be anymore. Huge improvement vai, tor mental growth er jonne hoito aunty responsible. As said by Nabila. But idk kemne oi phase theke ei phase e ashchish. Ami asholei obak hoichi tore niye. Ami to dhorei nichilam boro hoye pura who*re hobi tokhon ja ja kortish, but your turned out to be completely different. Code agei lekha chilo. Aro 2-3 ta pic ghatle pawa jabe, oidike jabona. Ekhon ei raat 2 tar somoy boshe wish likhtesi. Ar hut kore tor onek memories, deeds mathai ashlo. I don’t want to mention anything, dekh kichu mone pore kina 1st diker kahini, erpor sphinx and so on…. kisher theke ki hoye gechish vai, life e tor shob achievement tor improvement er jonnei. True, but life e mela polapan mentoring korchi and closely dekhchi. I don't recall anyone who changed this much. Hoito onek kichui onek somoy bolishnai. Onek pain nijer moddhe rekhe ei phase e ashchish. Idk what to say anymore except congratulations vai, you've grown. Porer bochor ei time e kothai thakbo idk, either kono ekta boro platform e darabo. Or another wasted potential hoye ei world er ekjon failure hoye mishe jabo. Eijonne I tried to make this a bit special. Tui na thakle ajke ei position e eshe daraite partam na. Tui amare 24/7 happy rakhishnai, tor sathe oi somporko na. But whenever I faced a breakdown, you were there to help me rise up. In fact meyera usually always oder friend der side nei, though tui nabila re mela pochondo korish, oi bro jokhon pura introvert chilo, tui or jonne hudai bash khaili. Or kono friend chilona. Amio koisilam, chaire de, oi ja pare koruk ekai. Still you cared for her, ami manush er jonne onek kichui kori/kortam but still etota karor jonne korinai. Huge respect for you, man. But still tui nabila er bishoytaw jemne tackle dili amar side hoye, I'm speechless. Idk what I would have done without you, guess we'd never know. Thanks to the lord for sending you in my life and thanks for all the supports I can never repay. Anyways, onek sad kotha batra bole fellam. Tor ekhon peak time, for the next 7-8 years tor beauty appreciate korbe, you'd be considered most valueable in this upcoming phase. Best of luck miss Fowzia Forhad Ahona. Thank you for everything.
+         </p>
     </div>
-
+    
     <!-- Footer -->
     <div class="footer">
       <div class="footer-star" style="top: 10px; left: 20%;"></div>
@@ -282,7 +369,7 @@
       <button class="fireworks-btn" onclick="triggerFireworks()">🎉 Click for a Surprise!</button>
     </div>
   </div>
-
+  
   <!-- Fireworks Overlay -->
   <div id="fireworks"></div>
 
@@ -291,14 +378,14 @@
       const envelope = document.querySelector('.envelope');
       const envelopeMessage = document.querySelector('.envelope-message');
       const content = document.getElementById('content');
-
+      
       // Hide envelope message
       envelopeMessage.style.opacity = 0;
-
+      
       // Animate envelope
       envelope.style.transform = 'rotateX(180deg)';
       envelope.querySelector('.front').style.transform = 'rotateX(180deg)';
-
+      
       // Show content
       setTimeout(() => {
         content.style.display = 'flex';
@@ -314,18 +401,33 @@
     function triggerFireworks() {
       const fireworks = document.getElementById('fireworks');
       fireworks.style.display = 'block';
-      for (let i = 0; i < 50; i++) {
+      
+      for (let i = 0; i < 200; i++) {
         const particle = document.createElement('div');
-        particle.className = 'particle';
+        const type = Math.random() < 0.3 ? 'star' : 
+                     (Math.random() < 0.5 ? 'spark' : 'particle');
+        
+        particle.className = type;
         particle.style.left = `${Math.random() * 100}%`;
         particle.style.top = `${Math.random() * 100}%`;
-        particle.style.backgroundColor = randomColor();
+        particle.style.animationDelay = `${Math.random() * 1}s`;
+        
+        if (type === 'particle') {
+          particle.style.backgroundColor = randomColor();
+          particle.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
+        } else if (type === 'spark') {
+          particle.style.borderColor = randomColor();
+          particle.style.width = `${Math.random() * 5 + 2}px`;
+          particle.style.height = `${Math.random() * 5 + 2}px`;
+        }
+        
         fireworks.appendChild(particle);
       }
+      
       setTimeout(() => {
         fireworks.innerHTML = '';
         fireworks.style.display = 'none';
-      }, 1000);
+      }, 3000);
     }
 
     function randomColor() {
@@ -334,4 +436,3 @@
   </script>
 </body>
 </html>
-
