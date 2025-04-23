@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, Sister!</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: 'Dancing Script', cursive;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a8edea);
+      color: #333;
+      text-align: center;
+    }
+
+    /* Celestial Background */
+    .background-decor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: repeating-radial-gradient(
+        circle at center,
+        transparent 0,
+        rgba(255, 154, 158, 0.2) 20px,
+        rgba(255, 224, 189, 0.2) 20px,
+        rgba(168, 237, 234, 0.2) 40px
+      );
+      animation: float 15s linear infinite;
+    }
+
+    /* Header */
+    h1 {
+      font-size: 3rem;
+      color: #ff6f61;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      margin-top: 20px;
+      animation: fadeIn 2s ease-in-out forwards;
+    }
+
+    /* Envelope Container */
+    .envelope-container {
+      perspective: 1000px;
+      margin: 50px auto;
+      width: 320px;
+      height: 220px;
+    }
+
+    /* 3D Envelope */
+    .envelope {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease-in-out;
+      overflow: hidden;
+    }
+
+    /* Envelope Flaps */
+    .flap {
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(45deg, #ff6f61, #ff9a9e);
+      border-radius: 10px 10px 0 0;
+      transform-origin: bottom;
+      transition: transform 0.5s ease-in-out;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .flap.back {
+      background: linear-gradient(45deg, #ff9a9e, #ffc3a0);
+      transform: rotateX(-180deg);
+    }
+
+    /* Envelope Message */
+    .envelope-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Dancing Script', cursive;
+      font-size: 1rem;
+      color: white;
+      text-align: center;
+      padding: 0 15px;
+      line-height: 1.3;
+      white-space: normal;
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    /* Floating Button */
+    .touch-button {
+      margin-top: 20px;
+      padding: 15px 30px;
+      background: linear-gradient(45deg, #ff6f61, #ff9a9e);
+      border: none;
+      border-radius: 25px;
+      color: white;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3rem;
+      cursor: pointer;
+      animation: float 2s ease-in-out infinite;
+      box-shadow: 0 0 20px rgba(255, 111, 97, 0.5);
+    }
+
+    /* Content Section */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    }
+
+    /* Birthday Note */
+    .note {
+      font-family: 'Courier New', monospace;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      white-space: normal;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      max-width: 90%;
+      margin: 0 auto;
+      padding: 20px;
+      background: rgba(255, 235, 238, 0.8);
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 2s ease-in-out forwards;
+    }
+
+    /* Photo Collage */
+    .collage {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .collage img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    /* Footer Section */
+    .footer {
+      position: relative;
+      margin-top: 50px;
+      padding: 20px;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      text-align: center;
+      animation: fadeIn 2s ease-in-out forwards;
+    }
+
+    /* Floating Stars in Footer */
+    .footer-star {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: gold;
+      border-radius: 50%;
+      animation: twinkle 2s linear infinite;
+    }
+
+    /* Back-to-Top Button */
+    .back-to-top {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ff6f61;
+      border: none;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .back-to-top:hover {
+      transform: scale(1.1);
+    }
+
+    /* Signature Sparkle */
+    .signature {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+      color: #ff6f61;
+      margin-top: 20px;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    /* Fireworks Container */
+    #fireworks {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1000;
+      pointer-events: none;
+      display: none;
+    }
+
+    /* Firework Particles */
+    .particle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #ff6f61;
+      border-radius: 50%;
+      animation: explode 1s linear forwards;
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes explode {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Celestial Background -->
+  <div class="background-decor"></div>
+
+  <!-- Header -->
+  <h1>Happy Birthday, Bit*ch!</h1>
+
+  <!-- Envelope -->
+  <div class="envelope-container">
+    <div class="envelope" onclick="openEnvelope()">
+      <div class="flap front"></div>
+      <div class="flap back"></div>
+      <div class="envelope-message">To the most supportive and adorable sister to exist on earth</div>
+    </div>
+    <button class="touch-button" onclick="openEnvelope()">💌 Open Your Gift 💌</button>
+  </div>
+
+  <!-- Content -->
+  <div class="container" id="content" style="display: none;">
+    <div class="collage">
+      <img src="photo1.jpg" alt="Memory 1">
+      <img src="photo2.jpg" alt="Memory 2">
+      <img src="photo3.jpg" alt="Memory 3">
+    </div>
+    <div class="note">
+      <p>
+        Happy birthday, bit*ch. I don't miss the old you, I want you to keep up the growth. Kew amar theke outperform korle jealous feel na howa ek jinish ar to pray je ekjon amare outperform korbe is a different thing. Nabila er khetre I always loved the fact je ore diye amar nijer pain numb hoi. Ore diye nijer validity measure korte vallagto. Egula unethical, but also true. I never wanted her to outperform me. Personal satisfaction.... But maybe you're the only one in this world I want to outperform me. Ekhon ar emne eshe kannakati o korishna inbox e, emne notes likhew ar fb te share dishna. You’re not the crybaby you used to be anymore. Huge improvement vai, tor mental growth er jonne hoito aunty responsible. As said by Nabila. But idk kemne oi phase theke ei phase e ashchish. Ami asholei obak hoichi tore niye. Ami to dhorei nichilam boro hoye pura who*re hobi tokhon ja ja kortish, but your turned out to be completely different. Code agei lekha chilo. Aro 2-3 ta pic ghatle pawa jabe, oidike jabona. Ekhon ei raat 2 tar somoy boshe wish likhtesi. Ar hut kore tor onek memories, deeds mathai ashlo. I don’t want to mention anything, dekh kichu mone pore kina 1st diker kahini, erpor sphinx and so on…. kisher theke ki hoye gechish vai, life e tor shob achievement tor improvement er jonnei. True, but life e mela polapan mentoring korchi and closely dekhchi. I don't recall anyone who changed this much. Hoito onek kichui onek somoy bolishnai. Onek pain nijer moddhe rekhe ei phase e ashchish. Idk what to say anymore except congratulations vai, you've grown. Porer bochor ei time e kothai thakbo idk, either kono ekta boro platform e darabo. Or another wasted potential hoye ei world er ekjon failure hoye mishe jabo. Eijonne I tried to make this a bit special. Tui na thakle ajke ei position e eshe daraite partam na. Tui amare 24/7 happy rakhishnai, tor sathe oi somporko na. But whenever I faced a breakdown, you were there to help me rise up. In fact meyera usually always oder friend der side nei, though tui nabila re mela pochondo korish, oi bro jokhon pura introvert chilo, tui or jonne hudai bash khaili. Or kono friend chilona. Amio koisilam, chaire de, oi ja pare koruk ekai. Still you cared for her, ami manush er jonne onek kichui kori/kortam but still etota karor jonne korinai. Huge respect for you, man. But still tui nabila er bishoytaw jemne tackle dili amar side hoye, I'm speechless. Idk what I would have done without you, guess we'd never know. Thanks to the lord for sending you in my life and thanks for all the supports I can never repay. Anyways, onek sad kotha batra bole fellam. Tor ekhon peak time, for the next 7-8 years tor beauty appreciate korbe, you'd be considered most valueable in this upcoming phase. Best of luck miss Fowzia Forhad Ahona. Thank you for everything.
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-star" style="top: 10px; left: 20%;"></div>
+      <div class="footer-star" style="top: 30px; right: 15%;"></div>
+      <div class="footer-star" style="bottom: 10px; left: 40%;"></div>
+      <button class="back-to-top" onclick="scrollToTop()">🚀 Back to Top</button>
+      <div class="signature">Made with ❤️ by 𝓐𝓱𝓶𝓪𝓭 𝓐𝓫𝓻𝓪𝓻 𝓐𝓵𝓲𝓯</div>
+      <button class="fireworks-btn" onclick="triggerFireworks()">🎉 Click for a Surprise!</button>
+    </div>
+  </div>
+
+  <!-- Fireworks Overlay -->
+  <div id="fireworks"></div>
+
+  <script>
+    function openEnvelope() {
+      const envelope = document.querySelector('.envelope');
+      const envelopeMessage = document.querySelector('.envelope-message');
+      const content = document.getElementById('content');
+
+      // Hide envelope message
+      envelopeMessage.style.opacity = 0;
+
+      // Animate envelope
+      envelope.style.transform = 'rotateX(180deg)';
+      envelope.querySelector('.front').style.transform = 'rotateX(180deg)';
+
+      // Show content
+      setTimeout(() => {
+        content.style.display = 'flex';
+        content.style.opacity = 1;
+        content.style.transform = 'translateY(0)';
+      }, 1000);
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function triggerFireworks() {
+      const fireworks = document.getElementById('fireworks');
+      fireworks.style.display = 'block';
+      for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.backgroundColor = randomColor();
+        fireworks.appendChild(particle);
+      }
+      setTimeout(() => {
+        fireworks.innerHTML = '';
+        fireworks.style.display = 'none';
+      }, 1000);
+    }
+
+    function randomColor() {
+      return `hsl(${Math.random() * 360}, 70%, 60%)`;
+    }
+  </script>
+</body>
+</html>
+
