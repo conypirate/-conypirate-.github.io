@@ -116,7 +116,7 @@
       font-family: 'Courier New', monospace;
       font-size: 1.2rem;
       line-height: 2;
-      white-space: pre-wrap; /* Preserve manual line breaks */
+      white-space: pre-wrap;
       word-break: break-word;
       overflow-wrap: break-word;
       max-width: 90%;
@@ -199,7 +199,7 @@
       transform: scale(1.1);
       box-shadow: 0 8px 20px rgba(255, 111, 97, 0.8);
     }
-    /* Cute Text Animation (Responsive) */
+    /* Cute Text Animation */
     #cute-text {
       position: fixed;
       top: 50%;
@@ -211,14 +211,11 @@
       background: rgba(255, 255, 255, 0.8);
       padding: 20px 40px;
       border-radius: 50px;
-      text-shadow: none;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       opacity: 0;
       pointer-events: none;
       z-index: 2000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: none;
       animation: fadeInOut 5s ease-in-out forwards;
     }
     /* Animations */
@@ -243,10 +240,22 @@
       50% { transform: scale(1.1); }
     }
     @keyframes fadeInOut {
-      0% { opacity: 0; transform: scale(0.8); }
-      20% { opacity: 1; transform: scale(1); }
-      80% { opacity: 1; transform: scale(1); }
-      100% { opacity: 0; transform: scale(1.2); }
+      0% { 
+        opacity: 0; 
+        transform: translate(-50%, -50%) scale(0.8); 
+      }
+      20% { 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1); 
+      }
+      80% { 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1); 
+      }
+      100% { 
+        opacity: 0; 
+        transform: translate(-50%, -50%) scale(1.2); 
+      }
     }
   </style>
 </head>
@@ -329,7 +338,7 @@
     </div>
   </div>
   <!-- Cute Text -->
-  <div id="cute-text" style="display: none;">You are the best 🤍</div>
+  <div id="cute-text">You are the best 🤍</div>
   <!-- Confetti.js Library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
@@ -338,36 +347,33 @@
       const envelope = document.querySelector('.envelope');
       const envelopeMessage = document.querySelector('.envelope-message');
       const content = document.getElementById('content');
-      // Hide envelope message
       envelopeMessage.style.opacity = 0;
-      // Animate envelope
       envelope.style.transform = 'rotateX(180deg)';
       envelope.querySelector('.front').style.transform = 'rotateX(180deg)';
-      // Show content
       setTimeout(() => {
         content.style.display = 'flex';
         content.style.opacity = 1;
         content.style.transform = 'translateY(0)';
       }, 1000);
     }
+
     // Scroll to Top
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
     // Trigger Fireworks Effect
     function triggerFireworks() {
       const cuteText = document.getElementById('cute-text');
-      // Show "You are the best" message
-      cuteText.style.display = 'flex';
-      void cuteText.offsetWidth; // Restart animation
+      cuteText.style.display = 'block';
       cuteText.style.animation = 'fadeInOut 5s ease-in-out forwards';
-
-      // Fireworks bursts
-      const bursts = 2; // Two bursts
-      const intervalBetweenBursts = 750; // 0.75 seconds
-      const shotsPerBurst = 6; // 6 shots per burst
-      const shotInterval = 100; // 0.1 seconds
-
+      
+      // Fireworks configuration
+      const bursts = 2;
+      const interval = 750;
+      const shotsPerBurst = 6;
+      const shotDelay = 100;
+      
       for (let i = 0; i < bursts; i++) {
         setTimeout(() => {
           for (let j = 0; j < shotsPerBurst; j++) {
@@ -382,16 +388,16 @@
                 drift: 2,
                 ticks: 300
               });
-            }, j * shotInterval);
+            }, j * shotDelay);
           }
-        }, i * intervalBetweenBursts);
+        }, i * interval);
       }
 
-      // Clear elements after animation ends
+      // Reset after animation
       setTimeout(() => {
         cuteText.style.display = 'none';
-        cuteText.style.animation = ''; // Reset animation
-      }, 5000); // Adjusted to match 5-second animation
+        cuteText.style.animation = '';
+      }, 5000);
     }
   </script>
 </body>
