@@ -219,7 +219,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      animation: fadeInOut 3s ease-in-out forwards; /* Reduced from 5s to 3s */
+      animation: fadeInOut 3s ease-in-out forwards;
     }
     /* Animations */
     @keyframes floatBackground {
@@ -342,10 +342,15 @@
   </div>
   <!-- Cute Text -->
   <div id="cute-text" style="display: none;">You are the best 🤍</div>
+  <!-- Audio Element -->
+  <audio id="background-audio" autoplay loop>
+    <source src="audio.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
   <!-- Confetti.js Library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
-    // Initial fireworks when page loads (single burst, faster fadeout)
+    // Initial fireworks when page loads
     window.addEventListener('DOMContentLoaded', () => {
       const shotsPerBurst = 8;
       const shotInterval = 100;
@@ -357,47 +362,65 @@
             origin: { y: Math.random() * 0.6 + 0.2 },
             colors: ['#FFD700', '#E5729B', '#FF6B6B'],
             scalar: 1.5,
-            gravity: 0.2, // Increased gravity for faster falling
-            ticks: 200 // Reduced lifespan for quicker fadeout
+            gravity: 0.2,
+            ticks: 200
           });
         }, j * shotInterval);
       }
     });
-
+    // Gentle Falling Sparkles Animation (Modified)
+    function createFallingSparkles() {
+      confetti({
+        particleCount: 20, // Reduced density
+        angle: 90,
+        spread: 70,
+        origin: { 
+          x: Math.random() * 0.5 + 0.25, 
+          y: -0.1 
+        },
+        colors: ['#FFD70080', '#A8EDEA80', '#FF6B6B80'],
+        scalar: 0.8,
+        gravity: 0.4, // Adjusted to fall slower
+        drift: Math.random() * 0.2 - 0.1, // Slight horizontal movement
+        ticks: 1000, // Extended duration
+        shapes: ['circle', 'square'],
+        zIndex: 1000
+      });
+    }
+    // Start animation loop
+    window.addEventListener('load', () => {
+      setInterval(createFallingSparkles, 800); // Increased interval
+    });
     // Open Envelope Animation
     function openEnvelope() {
       const envelope = document.querySelector('.envelope');
       const envelopeMessage = document.querySelector('.envelope-message');
       const content = document.getElementById('content');
-      
       envelopeMessage.style.opacity = 0;
       envelope.style.transform = 'rotateX(180deg)';
       envelope.querySelector('.front').style.transform = 'rotateX(180deg)';
-      
       setTimeout(() => {
         content.style.display = 'flex';
-        content.style.opacity = 1;
-        content.style.transform = 'translateY(0)';
+        setTimeout(() => {
+          content.style.opacity = 1;
+          content.style.transform = 'translateY(0)';
+        }, 100);
       }, 1000);
     }
-
     // Scroll to Top
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
-    // Trigger Fireworks Effect (unchanged)
+    // Trigger Fireworks Effect
     function triggerFireworks() {
       const cuteText = document.getElementById('cute-text');
       cuteText.style.display = 'flex';
       void cuteText.offsetWidth;
       cuteText.style.animation = 'fadeInOut 5s ease-in-out forwards';
-      
       const bursts = 2;
       const intervalBetweenBursts = 750;
       const shotsPerBurst = 6;
       const shotInterval = 100;
-      
       for (let i = 0; i < bursts; i++) {
         setTimeout(() => {
           for (let j = 0; j < shotsPerBurst; j++) {
@@ -416,7 +439,6 @@
           }
         }, i * intervalBetweenBursts);
       }
-      
       setTimeout(() => {
         cuteText.style.display = 'none';
         cuteText.style.animation = '';
