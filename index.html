@@ -361,7 +361,7 @@
   <!-- Cute Text -->
   <div id="cute-text" style="display: none;">You are the best 🤍</div>
   <!-- Audio Element -->
-  <audio id="background-audio" autoplay loop muted>
+  <audio id="background-audio" loop>
     <source src="audio.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
@@ -372,9 +372,17 @@
     const audio = document.getElementById('background-audio');
     const unmuteBtn = document.getElementById('unmute-btn');
 
+    // Initial audio setup
+    audio.volume = 0.5;
+    audio.muted = true;
+
     function toggleAudio() {
       if (audio.muted) {
         audio.muted = false;
+        audio.play().catch(error => {
+          console.error('Autoplay blocked:', error);
+          alert('Please interact with the page to enable audio');
+        });
         unmuteBtn.textContent = '🔊 Mute Music';
       } else {
         audio.muted = true;
@@ -481,6 +489,12 @@
         cuteText.style.animation = '';
       }, 5000);
     }
+
+    // Error handling for audio
+    audio.addEventListener('error', (e) => {
+      console.error('Audio error:', e);
+      alert('Error loading audio file. Please check the file path and format.');
+    });
   </script>
 </body>
 </html>
