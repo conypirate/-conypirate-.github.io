@@ -221,6 +221,23 @@
       justify-content: center;
       animation: fadeInOut 3s ease-in-out forwards;
     }
+    /* Audio Control Button */
+    #unmute-btn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #ff6f61;
+      border: none;
+      border-radius: 25px;
+      color: white;
+      cursor: pointer;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.1rem;
+      transition: transform 0.3s ease-in-out;
+      box-shadow: 0 4px 8px rgba(255, 111, 97, 0.5);
+    }
+    #unmute-btn:hover {
+      transform: scale(1.05);
+    }
     /* Animations */
     @keyframes floatBackground {
       0%, 100% { transform: translateY(0); }
@@ -338,18 +355,33 @@
       <button class="back-to-top" onclick="scrollToTop()">🚀 Back to Top</button>
       <div class="signature">Designed with devotion by <div style="color: #AC4D3B;">𝓐𝓵𝓲𝓯</div> (≖_≖ )</div>
       <button class="fireworks-btn" onclick="triggerFireworks()">🎉 Click for a Surprise!</button>
+      <button id="unmute-btn" onclick="toggleAudio()">🔊 Unmute Music</button>
     </div>
   </div>
   <!-- Cute Text -->
   <div id="cute-text" style="display: none;">You are the best 🤍</div>
   <!-- Audio Element -->
-  <audio id="background-audio" autoplay loop>
+  <audio id="background-audio" autoplay loop muted>
     <source src="audio.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
   <!-- Confetti.js Library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
+    // Audio Control
+    const audio = document.getElementById('background-audio');
+    const unmuteBtn = document.getElementById('unmute-btn');
+
+    function toggleAudio() {
+      if (audio.muted) {
+        audio.muted = false;
+        unmuteBtn.textContent = '🔊 Mute Music';
+      } else {
+        audio.muted = true;
+        unmuteBtn.textContent = '🔇 Unmute Music';
+      }
+    }
+
     // Initial fireworks when page loads
     window.addEventListener('DOMContentLoaded', () => {
       const shotsPerBurst = 8;
@@ -368,10 +400,11 @@
         }, j * shotInterval);
       }
     });
+
     // Gentle Falling Sparkles Animation (Modified)
     function createFallingSparkles() {
       confetti({
-        particleCount: 20, // Reduced density
+        particleCount: 20,
         angle: 90,
         spread: 70,
         origin: { 
@@ -380,17 +413,19 @@
         },
         colors: ['#FFD70080', '#A8EDEA80', '#FF6B6B80'],
         scalar: 0.8,
-        gravity: 0.4, // Adjusted to fall slower
-        drift: Math.random() * 0.2 - 0.1, // Slight horizontal movement
-        ticks: 1000, // Extended duration
+        gravity: 0.4,
+        drift: Math.random() * 0.2 - 0.1,
+        ticks: 1000,
         shapes: ['circle', 'square'],
         zIndex: 1000
       });
     }
+
     // Start animation loop
     window.addEventListener('load', () => {
-      setInterval(createFallingSparkles, 800); // Increased interval
+      setInterval(createFallingSparkles, 800);
     });
+
     // Open Envelope Animation
     function openEnvelope() {
       const envelope = document.querySelector('.envelope');
@@ -407,10 +442,12 @@
         }, 100);
       }, 1000);
     }
+
     // Scroll to Top
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
     // Trigger Fireworks Effect
     function triggerFireworks() {
       const cuteText = document.getElementById('cute-text');
