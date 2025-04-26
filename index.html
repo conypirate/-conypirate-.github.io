@@ -184,10 +184,14 @@
     .footer {
       position: relative;
       margin-top: 50px;
-      padding: 20px;
+      padding: 40px 20px;
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
       text-align: center;
       animation: fadeIn 2s ease-in-out forwards;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     /* Floating Stars in Footer */
     .footer-star {
@@ -198,20 +202,6 @@
       border-radius: 50%;
       animation: twinkle 2s linear infinite;
     }
-    /* Back-to-Top Button */
-    .back-to-top {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #ff6f61;
-      border: none;
-      border-radius: 20px;
-      color: white;
-      cursor: pointer;
-      transition: transform 0.3s ease-in-out;
-    }
-    .back-to-top:hover {
-      transform: scale(1.1);
-    }
     /* Signature Sparkle */
     .signature {
       font-family: 'Dancing Script', cursive;
@@ -219,25 +209,45 @@
       color: #ff6f61;
       margin-top: 20px;
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 1;
     }
     /* Fancy Fireworks Button */
     .fireworks-btn {
+      margin-top: 30px;
+      padding: 14px 28px;
+      background: linear-gradient(45deg, #FFD700, #FFA500);
+      border: 2px solid #FFD700;
+      border-radius: 50px;
+      color: white;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(255, 215, 0, 0.5);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      animation: pulse 1.5s infinite;
+    }
+    .fireworks-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 25px rgba(255, 215, 0, 0.8);
+    }
+    /* Rewrap Button */
+    .rewrap-btn {
       margin-top: 20px;
       padding: 12px 24px;
-      background: linear-gradient(45deg, #ff6f61, #ff9a9e);
+      background: linear-gradient(45deg, #AC4D3B, #ff6f61);
       border: none;
       border-radius: 50px;
       color: white;
       font-family: 'Dancing Script', cursive;
       font-size: 1.2rem;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(255, 111, 97, 0.5);
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-      animation: pulse 1.5s infinite;
+      box-shadow: 0 4px 10px rgba(172, 77, 59, 0.5);
+      transition: transform 0.3s ease-in-out;
     }
-    .fireworks-btn:hover {
+    .rewrap-btn:hover {
       transform: scale(1.1);
-      box-shadow: 0 8px 20px rgba(255, 111, 97, 0.8);
+      box-shadow: 0 8px 20px rgba(172, 77, 59, 0.8);
     }
     /* Cute Text Animation */
     #cute-text {
@@ -361,12 +371,12 @@
     </div>
     <!-- Footer -->
     <div class="footer">
+      <button class="fireworks-btn" onclick="triggerFireworks()">🎉 Click for a Surprise!</button>
+      <div class="signature">Designed with devotion by <div style="color: #AC4D3B;">𝓐𝓵𝓲𝓯</div> (≖_≖ )</div>
+      <button class="rewrap-btn" onclick="window.location.reload()">Rewrap gift🎁</button>
       <div class="footer-star" style="top: 10px; left: 20%;"></div>
       <div class="footer-star" style="top: 30px; right: 15%;"></div>
       <div class="footer-star" style="bottom: 10px; left: 40%;"></div>
-      <button class="back-to-top" onclick="scrollToTop()">🚀 Back to Top</button>
-      <div class="signature">Designed with devotion by <div style="color: #AC4D3B;">𝓐𝓵𝓲𝓯</div> (≖_≖ )</div>
-      <button class="fireworks-btn" onclick="triggerFireworks()">🎉 Click for a Surprise!</button>
     </div>
   </div>
   <!-- Cute Text -->
@@ -428,10 +438,6 @@
           });
         }, 100);
       }, 1000);
-    }
-    // Scroll to top
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     // Fireworks trigger
     function triggerFireworks() {
