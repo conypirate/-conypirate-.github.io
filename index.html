@@ -15,7 +15,6 @@
       color: #333;
       text-align: center;
     }
-
     /* Celestial Background */
     .background-decor {
       position: fixed;
@@ -33,7 +32,6 @@
       );
       animation: floatBackground 15s linear infinite;
     }
-
     /* Header */
     h1 {
       font-size: 3rem;
@@ -42,7 +40,6 @@
       margin-top: 20px;
       animation: fadeIn 2s ease-in-out forwards;
     }
-
     /* Envelope Container */
     .envelope-container {
       perspective: 1000px;
@@ -51,7 +48,6 @@
       height: 220px;
       position: relative;
     }
-
     /* Control Bar */
     .control-bar {
       position: absolute;
@@ -66,7 +62,6 @@
       pointer-events: none;
       transition: opacity 0.5s ease-in-out;
     }
-
     .control-btn {
       padding: 12px 24px;
       background: linear-gradient(45deg, #FFD700, #FFA500);
@@ -81,16 +76,13 @@
       white-space: nowrap;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
     }
-
     .control-btn:hover {
       transform: scale(1.05);
       box-shadow: 0 8px 16px rgba(255, 111, 97, 0.7);
     }
-
     .control-btn.active {
       animation: pulseGlow 2s infinite;
     }
-
     /* 3D Envelope */
     .envelope {
       position: relative;
@@ -100,7 +92,6 @@
       transition: transform 0.5s ease-in-out;
       overflow: hidden;
     }
-
     /* Envelope Flaps */
     .flap {
       position: absolute;
@@ -112,12 +103,10 @@
       transition: transform 0.5s ease-in-out;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-
     .flap.back {
       background: linear-gradient(45deg, #ff9a9e, #ffc3a0);
       transform: rotateX(-180deg);
     }
-
     /* Envelope Message */
     .envelope-message {
       position: absolute;
@@ -134,7 +123,6 @@
       opacity: 1;
       transition: opacity 0.5s ease-in-out;
     }
-
     /* Floating Button */
     .touch-button {
       margin-top: 20px;
@@ -149,7 +137,6 @@
       animation: float 2s ease-in-out infinite;
       box-shadow: 0 0 20px rgba(255, 111, 97, 0.5);
     }
-
     /* Content Section */
     .container {
       display: flex;
@@ -160,7 +147,6 @@
       transform: translateY(20px);
       transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
     }
-
     /* Birthday Note */
     .note {
       font-family: 'Courier New', monospace;
@@ -177,7 +163,6 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       animation: fadeIn 2s ease-in-out forwards;
     }
-
     /* Photo Collage */
     .collage {
       display: flex;
@@ -187,7 +172,6 @@
       align-items: center;
       width: 100%;
     }
-
     .collage img {
       width: 100%;
       max-width: 400px;
@@ -196,7 +180,6 @@
       opacity: 0;
       transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
     }
-
     /* Footer Section */
     .footer {
       position: relative;
@@ -206,7 +189,6 @@
       text-align: center;
       animation: fadeIn 2s ease-in-out forwards;
     }
-
     /* Floating Stars in Footer */
     .footer-star {
       position: absolute;
@@ -216,7 +198,6 @@
       border-radius: 50%;
       animation: twinkle 2s linear infinite;
     }
-
     /* Back-to-Top Button */
     .back-to-top {
       margin-top: 20px;
@@ -228,20 +209,17 @@
       cursor: pointer;
       transition: transform 0.3s ease-in-out;
     }
-
     .back-to-top:hover {
       transform: scale(1.1);
     }
-
     /* Signature Sparkle */
     .signature {
       font-family: 'Dancing Script', cursive;
       font-size: 1.5rem;
       color: #ff6f61;
       margin-top: 20px;
-      animation: float 2s ease-in-out infinite;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
-
     /* Fancy Fireworks Button */
     .fireworks-btn {
       margin-top: 20px;
@@ -257,12 +235,10 @@
       transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
       animation: pulse 1.5s infinite;
     }
-
     .fireworks-btn:hover {
       transform: scale(1.1);
       box-shadow: 0 8px 20px rgba(255, 111, 97, 0.8);
     }
-
     /* Cute Text Animation */
     #cute-text {
       position: fixed;
@@ -285,39 +261,32 @@
       justify-content: center;
       animation: fadeInOut 3s ease-in-out forwards;
     }
-
     /* Animations */
     @keyframes floatBackground {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(10px); }
     }
-
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
-
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-20px); }
     }
-
     @keyframes twinkle {
       0%, 100% { opacity: 0.5; }
       50% { opacity: 1; }
     }
-
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.1); }
     }
-
     @keyframes pulseGlow {
       0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.6); }
       70% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); }
       100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
     }
-
     @keyframes fadeInOut {
       0% { 
         opacity: 0; 
@@ -336,14 +305,12 @@
         transform: translate(-50%, -50%) scale(1.2); 
       }
     }
-
     /* Responsive Styles */
     @media (max-width: 768px) {
       .control-btn {
         font-size: 1rem;
         padding: 8px 16px;
       }
-
       .touch-button {
         font-size: 1.2rem;
         padding: 12px 25px;
@@ -354,10 +321,8 @@
 <body>
   <!-- Celestial Background -->
   <div class="background-decor"></div>
-  
   <!-- Header -->
   <h1>Happy Birthday, Bitch!</h1>
-  
   <!-- Envelope Container -->
   <div class="envelope-container">
     <!-- 3D Envelope -->
@@ -366,10 +331,8 @@
       <div class="flap back"></div>
       <div class="envelope-message">To the most supportive and adorable sister to exist on earth</div>
     </div>
-    
     <!-- Open Button -->
     <button class="touch-button" onclick="openEnvelope()">💌 Open Your Gift 💌</button>
-    
     <!-- Control Bar -->
     <div class="control-bar" id="controlBar">
       <button class="control-btn" id="controlBtn" onclick="toggleControls()">
@@ -377,7 +340,6 @@
       </button>
     </div>
   </div>
-
   <!-- Content -->
   <div class="container" id="content" style="display: none;">
     <div class="collage">
@@ -385,7 +347,6 @@
       <img src="photo2.jpg" alt="Memory 2" style="transition-delay: 0.6s;">
       <img src="photo3.jpg" alt="Memory 3" style="transition-delay: 0.9s;">
     </div>
-    
     <div class="note">
      <p>
         Happy birthday, bitch!!! I don't miss the old you, I want you to keep up the growth.
@@ -398,7 +359,6 @@
         Anyways, onek sad kotha batra bole fellam. Tor ekhon peak time, for the next 7-8 years tor beauty appreciate korbe, you'd be considered most valueable in this upcoming phase. 𝓑𝓮𝓼𝓽 𝓸𝓯 𝓵𝓾𝓬𝓴 miss Fowzia Forhad Ahona. 𝓣𝓱𝓪𝓷𝓴 𝓨𝓸𝓾 for everything.
       </p>
     </div>
-    
     <!-- Footer -->
     <div class="footer">
       <div class="footer-star" style="top: 10px; left: 20%;"></div>
@@ -409,35 +369,28 @@
       <button class="fireworks-btn" onclick="triggerFireworks()">🎉 Click for a Surprise!</button>
     </div>
   </div>
-
   <!-- Cute Text -->
   <div id="cute-text" style="display: none;">You are the best 🤍</div>
-
   <!-- Audio Element -->
   <audio id="background-audio" loop>
     <source src="audio.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
-
   <!-- Confetti.js Library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
     const audio = document.getElementById('background-audio');
     let sparkleInterval;
     let isMuted = true;
-
     // Initial setup
     audio.volume = 0.5;
     audio.muted = true;
-
     // Update button text on page load
     document.getElementById('controlBtn').textContent = '🎵 Tap to Open Music & Animation';
-
     // Control button handler
     function toggleControls() {
       const btn = document.getElementById('controlBtn');
       isMuted = !isMuted;
-      
       if (isMuted) {
         audio.muted = true;
         clearInterval(sparkleInterval);
@@ -454,23 +407,19 @@
         btn.classList.add('active');
       }
     }
-
     // Envelope open animation and reveal controls
     function openEnvelope() {
       const envelope = document.querySelector('.envelope');
       const envelopeMessage = document.querySelector('.envelope-message');
       const content = document.getElementById('content');
       const controlBar = document.getElementById('controlBar');
-
       envelopeMessage.style.opacity = 0;
       envelope.style.transform = 'rotateX(180deg)';
       envelope.querySelector('.front').style.transform = 'rotateX(180deg)';
-
       setTimeout(() => {
         controlBar.style.opacity = 1;
         controlBar.style.pointerEvents = 'auto';
         content.style.display = 'flex';
-        
         setTimeout(() => {
           content.style.opacity = 1;
           content.style.transform = 'translateY(0)';
@@ -480,24 +429,20 @@
         }, 100);
       }, 1000);
     }
-
     // Scroll to top
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
     // Fireworks trigger
     function triggerFireworks() {
       const cuteText = document.getElementById('cute-text');
       cuteText.style.display = 'flex';
       void cuteText.offsetWidth;
       cuteText.style.animation = 'fadeInOut 5s ease-in-out forwards';
-
       const bursts = 2;
       const intervalBetweenBursts = 750;
       const shotsPerBurst = 6;
       const shotInterval = 100;
-
       for (let i = 0; i < bursts; i++) {
         setTimeout(() => {
           for (let j = 0; j < shotsPerBurst; j++) {
@@ -516,18 +461,15 @@
           }
         }, i * intervalBetweenBursts);
       }
-
       setTimeout(() => {
         cuteText.style.display = 'none';
         cuteText.style.animation = '';
       }, 5000);
     }
-
     // Initial fireworks on load
     window.addEventListener('DOMContentLoaded', () => {
       const shotsPerBurst = 8;
       const shotInterval = 100;
-
       for (let j = 0; j < shotsPerBurst; j++) {
         setTimeout(() => {
           confetti({
@@ -542,7 +484,6 @@
         }, j * shotInterval);
       }
     });
-
     // Sparkle animation
     function createFallingSparkles() {
       if (!isMuted) {
@@ -564,7 +505,6 @@
         });
       }
     }
-
     // Audio error handling
     audio.addEventListener('error', (e) => {
       console.error('Audio error:', e);
